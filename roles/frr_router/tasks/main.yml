@@ -1,0 +1,19 @@
+---
+- name: Ensure FRR configuration directory exists
+  file:
+    path: "/etc/frr/{{ router_name }}"
+    state: directory
+    owner: frr
+    group: frr
+    mode: '0755'
+
+- name: Configure BGP network advertisement
+  shell: |
+    ip netns exec {{ router_name }} vtysh --vty_socket /run/frr-{{ router_name }} \
+    -c "configure terminal" \
+    -c "router bgp {{ local_as }}" \
+    -c "address-family ipv4 unicast" \
+    -c "network {{ advertised_net }}" \
+    -c "exit-address-family" \
+    -c "end" \
+    -c "write memory"

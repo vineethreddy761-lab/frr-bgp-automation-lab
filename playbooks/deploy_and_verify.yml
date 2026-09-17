@@ -1,0 +1,28 @@
+---
+- hosts: routers
+  become: yes
+  vars:
+    bgp_as: 65002
+    router_id: 192.168.100.20
+    neighbor_ip: 192.168.100.1
+    neighbor_as: 65001
+  tasks:
+    - name: Ensure FRR configurations are deployed
+      template:
+        src: templates/frr.conf.j2
+        dest: /etc/frr/router2/frr.conf
+        owner: frr
+        group: frr
+        mode: '0640'
+
+    - name: Verify BGP summary status inside namespace
+      ansible.builtin.shell: |
+        ip netns exec router-ns vtysh -c "show ip bgp summary"
+      register: bgp_summary
+      changed_when: false
+
+    - name: Assert BGP neighbor is Established
+      ansible.builtin.assert:
+        that: "'Established' in bgp_summary.stdout"
+        fail_msg: "BGP adjacency is not in Established state!"
+        success_msg: "BGP adjacency verification passed successfully."

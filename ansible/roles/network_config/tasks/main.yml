@@ -1,0 +1,11 @@
+---
+- name: Ensure network configuration directory exists
+  file:
+    path: /tmp/lab_conf
+    state: directory
+    mode: '0755'
+
+- name: Deploy base network interface template
+  copy:
+    content: "# Managed by Ansible - Network Automation Lab\nGATEWAY=192.168.40.1\n"
+    dest: /tmp/lab_conf/interface.conf

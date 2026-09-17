@@ -1,0 +1,19 @@
+---
+- name: Configure Network Automation Lab Nodes
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+  tasks:
+    - name: Ensure lab directories exist
+      file:
+        path: "{{ item }}"
+        state: directory
+        mode: '0755'
+      loop:
+        - /tmp/lab_configs
+        - /tmp/lab_logs
+
+    - name: Write system diagnostic info
+      copy:
+        content: "Lab automation configuration executed successfully on inventory host.\n"
+        dest: /tmp/lab_configs/status.txt

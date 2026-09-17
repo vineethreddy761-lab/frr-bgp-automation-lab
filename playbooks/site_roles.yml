@@ -1,0 +1,7 @@
+---
+- name: Apply Network Configuration Role
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+  roles:
+    - network_config

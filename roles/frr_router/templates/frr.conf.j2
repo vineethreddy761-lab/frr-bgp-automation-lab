@@ -1,0 +1,14 @@
+!
+ip prefix-list PL-ALLOWED permit 192.168.100.0/24
+!
+route-map RM-FILTER permit 10
+  match ip address prefix-list PL-ALLOWED
+!
+router bgp {{ bgp_as }}
+  bgp router-id {{ router_id }}
+  neighbor {{ neighbor_ip }} remote-as {{ neighbor_as }}
+  address-family ipv4 unicast
+    neighbor {{ neighbor_ip }} activate
+    neighbor {{ neighbor_ip }} route-map RM-FILTER in
+  end-address-family
+!

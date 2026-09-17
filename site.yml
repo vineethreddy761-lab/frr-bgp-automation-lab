@@ -1,0 +1,18 @@
+---
+- name: Configure Routers with FRR Role
+  hosts: localhost
+  connection: local
+  tasks:
+    - include_role:
+        name: frr_router
+      vars:
+        router_name: "router-ns"
+        local_as: "65001"
+        advertised_net: "192.168.50.0/24"
+
+    - include_role:
+        name: frr_router
+      vars:
+        router_name: "router2"
+        local_as: "65002"
+        advertised_net: "192.168.60.0/24"

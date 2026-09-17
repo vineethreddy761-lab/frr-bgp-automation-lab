@@ -1,0 +1,4 @@
+---
+- name: Restart Network Service
+  debug:
+    msg: "Simulated network service restart triggered successfully."
