@@ -16,7 +16,7 @@ This project establishes a comprehensive, open-source infrastructure and network
 
 ### Directory Layout
 ```text
-~/networkautomation-project-lab/
+~/frr-bgp-automation-lab/
 ├── ansible/
 │   └── roles/
 │       └── network_config/
@@ -219,7 +219,7 @@ apply:
 echo "[INFO] Starting infrastructure health check and drift verification..."
 
 # 1. Run Terraform check for configuration drift
-cd ~/networkautomation-project-lab
+cd ~/frr-bgp-automation-lab
 terraform plan -refresh-only
 
 # 2. Check interface and routing states
