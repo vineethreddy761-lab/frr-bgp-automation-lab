@@ -1,0 +1,12 @@
+--- BGP Health Monitor ---
+[OK] router-ns Peer 192.168.100.20 State/Prefix: 0
+[OK] Router2 Peer 192.168.100.10 State/Prefix: 0
+
+All BGP sessions are healthy and established.
+=== Starting Network Automation Pipeline ===
+[*] Configuring router-ns (AS 65001)...
+[*] Configuring router2 (AS 65002)...
+[*] Clearing BGP sessions...
+[SUCCESS] All router configurations applied successfully.
+
+--- Running BGP Health Monitor ---

@@ -15,6 +15,7 @@ This lab simulates a multi-AS routing environment on a single Linux host using n
 
 ## Directory Layout
 
+```text
 ~/frr-bgp-automation-lab/
 ├── ansible/                  # Ansible playbooks and roles for configuration management
 ├── terraform/                # Infrastructure provisioning and drift verification templates
